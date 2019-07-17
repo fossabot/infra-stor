@@ -8,4 +8,4 @@ spec:
       ref: weaveworks/ignite-ubuntu
   cpus: 2
   diskSize: 3GB
-  memory: 800MB
+  memory: 1GB
