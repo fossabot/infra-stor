@@ -5,5 +5,6 @@ Ceph on Weaveworks Ignite
 
 ```bash
    sudo -E ./script/bootstrap
+   sudo -E ./script/local-deploy
    script/test
 ```
