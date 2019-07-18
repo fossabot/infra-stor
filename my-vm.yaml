@@ -6,7 +6,7 @@ metadata:
 spec:
   image:
     ociClaim:
-      ref: weaveworks/ignite-ubuntu
+      ref: weaveworks/ignite-alpine
   cpus: 2
   diskSize: 3GB
   memory: 1GB
