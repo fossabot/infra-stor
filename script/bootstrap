@@ -1,0 +1,54 @@
+#!/bin/sh
+set -e
+
+# Ignite
+
+export IGN_VERSION=v0.4.2
+
+inst_ignite() {
+    curl -fLo ignite https://github.com/weaveworks/ignite/releases/download/${VERSION}/ignite
+    chmod +x ignite
+    mv ignite /usr/local/bin
+}
+
+. /etc/os-release
+case $ID in
+ubuntu)
+    apt-get update && apt-get install -y --no-install-recommends docker-ce dmsetup openssh-client git binutils
+    break
+    ;;
+centos)
+    yum install -y docker e2fsprogs openssh-clients git
+    break
+    ;;
+*)
+    echo "Distro $ID Not support"
+    exit 1
+    ;;
+esac
+
+
+if ! command -v ignite; then
+    inst_ignite
+else
+    if [ "$IGN_VERSION" != "$(ignite version --output json | jq '.igniteVersion.gitVersion' | tr -d '\"')" ]; then
+        echo "Versions differ"
+        inst_ignite
+    fi
+fi
+
+# Ansible
+
+case $ID in
+ubuntu)
+    add-apt-repository -y ppa:ansible/ansible
+    apt-get update -y
+    apt-get install -y ansible
+    break
+    ;;
+centos)
+    yum install -y ansible
+    break
+    ;;
+esac
+

@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+cd "$(dirname "$0")/.."
+
+git clone https://github.com/ceph/ceph-ansible.git /tmp/ceph-ansible || true
+
+ansible-playbook -i instances/hosts.ini /tmp/ceph-ansible/site.yml.sample
