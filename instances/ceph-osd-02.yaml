@@ -1,0 +1,16 @@
+---
+apiVersion: ignite.weave.works/v1alpha1
+kind: VM
+metadata:
+  name: ceph-osd-02
+  uid: 64E9C4DED494440A
+spec:
+  ssh: true
+  image:
+    ociClaim:
+      ref: weaveworks/ignite-centos
+  cpus: 2
+  diskSize: 3GB
+  memory: 1GB
+status:
+  state: Running
