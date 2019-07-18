@@ -5,4 +5,9 @@ cd "$(dirname "$0")/.."
 
 git clone https://github.com/ceph/ceph-ansible.git /tmp/ceph-ansible || true
 
+# Dis gus ting
+IPS="$(sudo ignite ps | awk '{print $12}' | grep -v NAME)"
+echo $IPS | tr ' ' '\n' | xargs -I {} ssh-copy-id root@{}
+echo $IPS | tr ' ' '\n' | xargs -I {} scp script/no-sudo root@{}:/usr/local/bin/sudo
+
 ansible-playbook -i instances/hosts.ini /tmp/ceph-ansible/site.yml.sample
