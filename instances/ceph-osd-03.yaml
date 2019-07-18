@@ -8,8 +8,8 @@ spec:
   image:
     ociClaim:
       ref: weaveworks/ignite-centos
-  cpus: 2
-  diskSize: 3GB
+  cpus: 1
+  diskSize: 10GB
   memory: 1GB
 status:
-  state: Stopped
+  state: Running
