@@ -2,7 +2,7 @@ apiVersion: ignite.weave.works/v1alpha1
 kind: VM
 metadata:
   name: ceph-osd-01
-  uid: 20437DAB219566B5
+  uid: 3F8EBC058C7A4692
 spec:
   image:
     ociClaim:
