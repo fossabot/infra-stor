@@ -7,12 +7,9 @@ spec:
   ssh: true
   image:
     ociClaim:
-      ref: weaveworks/ignite-centos
+      ref: tyhal/fried-squid
   cpus: 1
   diskSize: 10GB
   memory: 1GB
-  copyFiles:
-	  -   hostPath: script/no-sudo
-		  vmPath: /usr/local/bin/sudo
 status:
   state: Running

@@ -5,3 +5,4 @@
 - Turns out I missed the Running status
 - Cant switch from alpine to centos
 - Cant give ignite gitop "." for local testing
+- Need to work out local testing workflow
