@@ -15,7 +15,7 @@ spec:
   network:
     mode: docker-bridge
     ports:
-      - hostPort: 23
+      - hostPort: 8102
         vmPort: 22
 status:
   state: Running
