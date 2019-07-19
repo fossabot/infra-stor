@@ -6,7 +6,7 @@ set -e
 export IGN_VERSION=v0.4.2
 
 inst_ignite() {
-    curl -fLo ignite https://github.com/weaveworks/ignite/releases/download/${VERSION}/ignite
+    curl -fLo ignite https://github.com/weaveworks/ignite/releases/download/${IGN_VERSION}/ignite
     chmod +x ignite
     mv ignite /usr/local/bin
 }
