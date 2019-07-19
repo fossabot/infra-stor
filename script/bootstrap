@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 # Ignite
 
@@ -14,12 +14,22 @@ inst_ignite() {
 . /etc/os-release
 case $ID in
 ubuntu)
-    apt-get update && apt-get install -y --no-install-recommends jq docker-ce dmsetup openssh-client git binutils
+    apt-get update && apt-get install -y --no-install-recommends \
+	    jq \
+	    docker-ce \
+	    dmsetup \
+	    openssh-client \
+	    git \
+	    binutils \
+	    python-wheel \
+	    python-setuptools \
+	    python-pip \
+	    python-netaddr
     break
     ;;
 centos)
     yum install epel-release -y
-    yum install -y docker e2fsprogs openssh-clients git jq
+    yum install -y docker e2fsprogs openssh-clients git jq python-pip
     break
     ;;
 *)
@@ -38,18 +48,4 @@ else
     fi
 fi
 
-# Ansible
-
-case $ID in
-ubuntu)
-    add-apt-repository -y ppa:ansible/ansible
-    apt-get update -y
-    apt-get install -y ansible
-    break
-    ;;
-centos)
-    yum install -y ansible
-    break
-    ;;
-esac
-
+pip install -r requirements.txt
