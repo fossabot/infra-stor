@@ -11,5 +11,10 @@ spec:
   cpus: 1
   diskSize: 10GB
   memory: 1GB
+  network:
+    mode: docker-bridge
+    ports:
+      - hostPort: 24
+        vmPort: 22
 status:
   state: Running
