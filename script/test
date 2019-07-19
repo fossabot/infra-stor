@@ -10,4 +10,4 @@ IPS="$(sudo ignite ps | awk '{print $12}' | grep -v NAME)"
 # echo $IPS | tr ' ' '\n' | xargs -I {} ssh-keygen -f "/root/.ssh/known_hosts" -R {}
 # echo $IPS | tr ' ' '\n' | xargs -I {} ssh-copy-id root@{}
 
-ansible-playbook -i instances/hosts.ini /tmp/ceph-ansible/site.yml.sample
+ansible-playbook -i hosts.ini /tmp/ceph-ansible/site.yml.sample

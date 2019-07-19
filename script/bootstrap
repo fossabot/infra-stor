@@ -14,11 +14,12 @@ inst_ignite() {
 . /etc/os-release
 case $ID in
 ubuntu)
-    apt-get update && apt-get install -y --no-install-recommends docker-ce dmsetup openssh-client git binutils
+    apt-get update && apt-get install -y --no-install-recommends jq docker-ce dmsetup openssh-client git binutils
     break
     ;;
 centos)
-    yum install -y docker e2fsprogs openssh-clients git
+    yum install epel-release -y
+    yum install -y docker e2fsprogs openssh-clients git jq
     break
     ;;
 *)
