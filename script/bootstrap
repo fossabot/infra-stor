@@ -1,51 +1,27 @@
 #!/bin/sh
 set -ex
 
-# Ignite
-
-export IGN_VERSION=v0.4.2
-
-inst_ignite() {
-    curl -fLo ignite https://github.com/weaveworks/ignite/releases/download/${IGN_VERSION}/ignite
-    chmod +x ignite
-    mv ignite /usr/local/bin
+hashi_inst() {
+    # Gist that installs hashicorp tools
+    curl -fsSL https://git.io/fjMMS | sudo sh -s -- $1 $2 $3
 }
 
-. /etc/os-release
-case $ID in
-ubuntu)
-    apt-get update && apt-get install -y --no-install-recommends \
-	    jq \
-	    docker-ce \
-	    dmsetup \
-	    openssh-client \
-	    git \
-	    binutils \
+# Hashi everything
+hashi_inst terraform 0.12.5 zip
+hashi_inst vagrant 2.2.5 deb
+hashi_inst packer 1.4.2 zip
+
+# Python
+apt-get update -y
+apt-get install -y \
 	    python-wheel \
 	    python-setuptools \
 	    python-pip \
 	    python-netaddr
-    break
-    ;;
-centos)
-    yum install epel-release -y
-    yum install -y docker e2fsprogs openssh-clients git jq python-pip
-    break
-    ;;
-*)
-    echo "Distro $ID Not support"
-    exit 1
-    ;;
-esac
 
-
-if ! command -v ignite; then
-    inst_ignite
-else
-    if [ "$IGN_VERSION" != "$(ignite version --output json | jq '.igniteVersion.gitVersion' | tr -d '\"')" ]; then
-        echo "Versions differ"
-        inst_ignite
-    fi
-fi
-
+# Pip stuff
 pip install -r requirements.txt
+
+# Ansible ceph
+git clone https://github.com/ceph/ceph-ansible.git /opt/ceph-ansible || true
+(cd /tmp/ceph-ansible && git checkout stable-4.0)

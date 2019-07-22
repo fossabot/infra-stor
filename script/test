@@ -3,13 +3,5 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-git clone https://github.com/ceph/ceph-ansible.git /tmp/ceph-ansible || true
-(cd /tmp/ceph-ansible && git checkout stable-4.0)
-
-# Dis gus ting
-IPS="$(sudo ignite ps | awk '{print $12}' | grep -v NAME)"
-# echo $IPS | tr ' ' '\n' | xargs -I {} ssh-keygen -f "/root/.ssh/known_hosts" -R {}
-echo $IPS | tr ' ' '\n' | xargs -I {} ssh-copy-id root@{}
-
 export ANSIBLE_STDOUT_CALLBACK=unixy
-ansible-playbook -i hosts.ini /tmp/ceph-ansible/site.yml.sample
+ansible-playbook -i hosts.ini /opt/ceph-ansible/site.yml.sample

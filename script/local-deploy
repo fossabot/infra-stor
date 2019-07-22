@@ -1,8 +1,0 @@
-#!/bin/sh
-set -e
-
-cd "$(dirname "$0")/.."
-
-export DOCKER_BUILDKIT=1
-docker build -t tyhal/fried-squid images
-ignite gitops "$PWD"

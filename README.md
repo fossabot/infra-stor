@@ -1,10 +1,8 @@
-# fried-squid
-Ceph on Weaveworks Ignite
+# Infrastructure Storage
 
-[Ignite](https://github.com/weaveworks/ignite)
+    Spin up Ceph on stuff
 
 ```bash
    sudo -HE ./script/bootstrap
-   sudo -E ./script/local-deploy
    script/test
 ```
