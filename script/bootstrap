@@ -22,6 +22,3 @@ apt-get install -y \
 # Pip stuff
 pip install -r requirements.txt
 
-# Ansible ceph
-git clone https://github.com/ceph/ceph-ansible.git /opt/ceph-ansible || true
-(cd /opt/ceph-ansible && git checkout stable-4.0)

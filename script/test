@@ -1,11 +1,13 @@
 #!/bin/sh
 set -e
 
-cd "$(dirname "$0")/../local"
+# Ansible ceph
+ceph_ansi_dir="$(dirname "$0")/../ceph-ansible"
 
-vagrant up --provider virtualbox
+git clone https://github.com/ceph/ceph-ansible.git "$ceph_ansi_dir" || true
+cd "$ceph_ansi_dir"
+git checkout stable-4.0
 
-cd ..
+mv vagrant_variables.yml.sample vagrant_variables.yml || true
 
-#export ANSIBLE_STDOUT_CALLBACK=unixy
-#ansible-playbook -i hosts.ini /opt/ceph-ansible/site.yml.sample
+vagrant up
