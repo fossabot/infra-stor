@@ -8,6 +8,13 @@ git clone https://github.com/ceph/ceph-ansible.git "$ceph_ansi_dir" || true
 cd "$ceph_ansi_dir"
 git checkout stable-4.0
 
-mv vagrant_variables.yml.sample vagrant_variables.yml || true
+cp vagrant_variables.yml.sample vagrant_variables.yml || true
 
 vagrant up
+
+vagrant ssh mon0
+# sudo -i
+# ceph -s
+# ceph osd tree
+# ceph osd dump|grep size
+
