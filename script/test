@@ -1,7 +1,11 @@
 #!/bin/sh
 set -e
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../local"
 
-export ANSIBLE_STDOUT_CALLBACK=unixy
-ansible-playbook -i hosts.ini /opt/ceph-ansible/site.yml.sample
+vagrant up --provider virtualbox
+
+cd ..
+
+#export ANSIBLE_STDOUT_CALLBACK=unixy
+#ansible-playbook -i hosts.ini /opt/ceph-ansible/site.yml.sample
