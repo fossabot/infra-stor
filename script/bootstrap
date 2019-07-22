@@ -19,6 +19,8 @@ apt-get install -y \
 	    python-pip \
 	    python-netaddr
 
-# Pip stuff
-pip install -r requirements.txt
-
+# Vagrant Libvirt
+apt-get build-dep vagrant ruby-libvirt || software-properties-gtk
+apt-get install -y qemu libvirt-bin ebtables dnsmasq-base
+apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+vagrant plugin install vagrant-libvirt

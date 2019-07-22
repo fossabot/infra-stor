@@ -9,8 +9,10 @@ cd "$ceph_ansi_dir"
 git checkout stable-4.0
 
 cp vagrant_variables.yml.sample vagrant_variables.yml || true
+cp site.yml.sample site.yml || true
+pip install -r requirements.txt
 
-vagrant up
+vagrant up --provision
 
 vagrant ssh mon0
 # sudo -i
